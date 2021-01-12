@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+.ZipCodeSearchTitle{
+  background-color: #282c34;
+  padding: 2rem;
+
+}
+
+.ZipCodeTitle{
+  font-size: 2.5rem;
+  color: white;
+}
+
+.Container{
+  border: 2px solid red;
+}

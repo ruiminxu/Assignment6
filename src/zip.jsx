@@ -8,6 +8,8 @@ export default class ZipFetch extends React.Component{
         this.state = {
           zip: [],
           loading: true,
+          zipC: null,
+          foundZip: false,
         };
       }
 
@@ -21,27 +23,81 @@ export default class ZipFetch extends React.Component{
         } catch (error) {
           console.error(error);
         }
-        // console.log(this.state.zip)
-      }
+    }
 
+
+    handleZipChange = event => {
+        this.setState({
+            zipC: event.target.value
+        })
+    }
+
+    handleSumbit = (event) => {
+        event.preventDefault();
+    }
+
+    handleSearching = () =>
+    {
+        let zipArray = this.state.zip;
+        let theZip = this.state.zipC;
+        zipArray.map(items => {
+            if(items.Zipcode === theZip)
+        {
+            this.setState({
+                foundZip : true,
+            })
+        }else{
+            this.setState({
+                foundZip : false,
+            })
+        }
+        })
+    }
     render()
     {
         return(
             <div>
-                <div>
-                    <form>
-                        <h1>Look Up A Zip-Code here</h1>
-                        <input></input> <br/>
-                        <button>Search</button>
+                <div className = "Happy">
+                    <form onSubmit={this.handleSumbit}>
+                        <div className = "ZipCodeSearchTitle">
+                            <h1 className = "ZipCodeTitle">Zip Code Search</h1>
+                        </div>
+                        <input type = "text" value = {this.state.zipC} onChange = {this.handleZipChange}></input> <br/>
+                        <button onClick = {this.handleSearching}>Search</button>
                     </form>
                 </div>
-            
-            <div>
+
                 {
-                    this.state.zip.map(items => <h2 key = {items.RecordName}>{items.RecordNumber}</h2>)
+                    this.state.foundZip? 
+                
+                    <div className = "Container"> 
+                        {this.state.zip.map(items => (
+                           <ul key = {items.Recordnumber}>
+                               <li>
+                                    State: {items.State}
+                               </li>
+                               <li>
+                                    Location: {items.State}
+                               </li>
+                               <li>
+                                   Population (estimated): {items.EstimatedPopulation}
+                               </li>
+                               <li>
+                                    Total Wages: {items.TotalWages}
+                               </li>
+                           </ul>
+                       
+                        ))}
+                        
+                    </div>
+                    : <div>
+                        <h1>The Zip-Code does not work</h1>
+                     </div>
                 }
+            
             </div>
-            </div>
+                
+           
         );
     }
 }

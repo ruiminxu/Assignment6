@@ -41,8 +41,6 @@ export default class ZipFetch extends React.Component{
                     this.state.zip.map(items => <h2 key = {items.RecordName}>{items.RecordNumber}</h2>)
                 }
             </div>
-
-           
             </div>
         );
     }

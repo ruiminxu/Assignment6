@@ -8,7 +8,7 @@ export default class ZipFetch extends React.Component{
         this.state = {
           zip: [],
           loading: true,
-          zipC: null,
+          zipC: '',
           foundZip: false,
         };
       }
@@ -62,37 +62,44 @@ export default class ZipFetch extends React.Component{
                         <div className = "ZipCodeSearchTitle">
                             <h1 className = "ZipCodeTitle">Zip Code Search</h1>
                         </div>
-                        <input type = "text" value = {this.state.zipC} onChange = {this.handleZipChange}></input> <br/>
-                        <button onClick = {this.handleSearching}>Search</button>
+                        <input className = "zipCodeInput" placeholder = "zipcode..."type = "text" value = {this.state.zipC} onChange = {this.handleZipChange}></input> <br/>
+                        <button className = "searchButton" onClick = {this.handleSearching}>Search</button>
                     </form>
                 </div>
 
                 {
-                    this.state.foundZip? 
-                
-                    <div className = "Container"> 
-                        {this.state.zip.map(items => (
-                           <ul key = {items.Recordnumber}>
-                               <li>
-                                    State: {items.State}
-                               </li>
-                               <li>
-                                    Location: {items.State}
-                               </li>
-                               <li>
-                                   Population (estimated): {items.EstimatedPopulation}
-                               </li>
-                               <li>
-                                    Total Wages: {items.TotalWages}
-                               </li>
-                           </ul>
-                       
-                        ))}
-                        
-                    </div>
-                    : <div>
-                        <h1>The Zip-Code does not work</h1>
-                     </div>
+                    !this.state.zipC?
+                    <div>Please enter a Zip-Code</div>
+                    :
+                        this.state.foundZip? 
+                        <div className = "Container"> 
+                            {this.state.zip.map(items => (
+                               <div>
+                                   <h3>{items.City}, {items.State}</h3>
+                               <ul className = "informtation"key = {items.Recordnumber}>
+                                   <li>
+                                        State: {items.State}
+                                   </li>
+                                   <li>
+                                        Location: {items.State}
+                                   </li>
+                                   <li>
+                                       Population (estimated): {items.EstimatedPopulation}
+                                   </li>
+                                   <li>
+                                        Total Wages: {items.TotalWages}
+                                   </li>
+                               </ul>
+                               </div>
+                           
+                            ))}
+                            
+                        </div>
+                        : <div>
+                            <h1>Please Enter A Correct Zip-Code</h1>
+                         </div>
+                    
+
                 }
             
             </div>
@@ -101,3 +108,4 @@ export default class ZipFetch extends React.Component{
         );
     }
 }
+

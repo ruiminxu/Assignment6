@@ -48,6 +48,27 @@
   color: white;
 }
 
-.Container{
-  border: 2px solid red;
+
+
+.zipCodeInput{
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 15px 0;
+  padding: 12px 25px;
+}
+
+.searchButton{
+  margin: 10px 0;
+  padding: 0.5rem;
+
+}
+
+
+.informtation{
+  border: 1px solid #ccc;
+  width: 40%;
+  padding: 2rem;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  margin-left: 24rem;
 }

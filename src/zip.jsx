@@ -69,7 +69,7 @@ export default class ZipFetch extends React.Component{
 
                 {
                     !this.state.zipC?
-                    <div>Please enter a Zip-Code</div>
+                    <div><h3>Please enter a Zip-Code...</h3></div>
                     :
                         this.state.foundZip? 
                         <div className = "Container"> 
@@ -91,15 +91,9 @@ export default class ZipFetch extends React.Component{
                                    </li>
                                </ul>
                                </div>
-                           
                             ))}
-                            
                         </div>
-                        : <div>
-                            <h1>Please Enter A Correct Zip-Code</h1>
-                         </div>
-                    
-
+                        : null
                 }
             
             </div>
